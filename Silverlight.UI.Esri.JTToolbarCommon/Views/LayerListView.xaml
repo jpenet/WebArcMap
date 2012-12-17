@@ -1,0 +1,31 @@
+﻿<controls:ChildWindow x:Class="Silverlight.UI.Esri.JTToolbarCommon.Views.LayerListView"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           xmlns:helper="clr-namespace:Silverlight.Helper.Behaviour;assembly=Silverlight.Helper"
+           Width="400" Height="300" 
+           Title="LayerListView">
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding LayerList}" helper:Selected.Command="{Binding LayerSelectedCommand}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/Layer_LYR_File16.png" />
+                        <TextBlock Text="{Binding Title}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+            <Button x:Name="CancelButton" Content="Annuleer" Click="CancelButton_Click" Width="100" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="Voeg layer toe" Click="OKButton_Click" Width="100" Height="23" HorizontalAlignment="Left" Margin="0,12,79,0" Grid.Row="1" />
+    </Grid>
+</controls:ChildWindow>

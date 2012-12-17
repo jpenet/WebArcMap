@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\inetpub\wwwroot\WebArcMap" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Web.config" publishTime="12/17/2012 15:29:43" />
+    <file relUrl="ClientBin/Demo/Bookmarks.xml" publishTime="12/03/2011 13:39:50" />
+    <file relUrl="ClientBin/Startup.xap" publishTime="12/17/2012 15:22:28" />
+    <file relUrl="ClientBin/Demo/demo.png" publishTime="12/02/2011 23:12:01" />
+    <file relUrl="ClientBin/Demo/AppConfig.xml" publishTime="12/03/2011 14:07:19" />
+    <file relUrl="ClientBin/Demo/Layers.xml" publishTime="12/01/2011 20:14:50" />
+    <file relUrl="WebMapTestPage.aspx" publishTime="09/23/2011 21:42:09" />
+    <file relUrl="ClientBin/LayerSelection.xap" publishTime="12/17/2012 15:22:19" />
+    <file relUrl="ClientBin/JTMap.xap" publishTime="12/17/2012 15:22:14" />
+    <file relUrl="ClientBin/JTToc.xap" publishTime="12/17/2012 15:22:22" />
+    <file relUrl="ClientBin/JTToolbarEditGeneral.xap" publishTime="12/17/2012 15:22:11" />
+    <file relUrl="clientaccesspolicy.xml" publishTime="09/07/2011 12:22:45" />
+    <file relUrl="ClientBin/JTToolbarCommon.xap" publishTime="12/17/2012 15:22:25" />
+    <file relUrl="crossdomain.xml" publishTime="09/07/2011 12:22:45" />
+    <file relUrl="bin/Silverlight.Web.dll" publishTime="12/17/2012 15:28:31" />
+    <file relUrl="WebMapTestPage.html" publishTime="10/23/2011 11:03:54" />
+    <file relUrl="Silverlight.js" publishTime="09/07/2011 10:42:39" />
+    <file relUrl="bin/Silverlight.Web.pdb" publishTime="12/17/2012 15:28:31" />
+  </publishProfile>
+</publishData>

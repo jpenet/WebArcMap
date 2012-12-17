@@ -1,0 +1,114 @@
+﻿<UserControl xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    x:Class="Silverlight.UI.Esri.JTToolbarCommon.Views.LocationInput"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:helper="clr-namespace:Silverlight.Helper.Behaviour;assembly=Silverlight.Helper"
+    mc:Ignorable="d"
+    d:DesignHeight="492" d:DesignWidth="330">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Silverlight.Styles.Dictionaries;component/Theme.xaml" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Style="{StaticResource GridGradientBackground}" Margin="0,10,0,0"  Width="300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+        </Grid.RowDefinitions>
+        <sdk:Label Height="23" HorizontalAlignment="Left" Margin="5,0,0,0" Name="lblNumber" Content="Nummer" VerticalAlignment="Center" Grid.Row="1" />
+        <sdk:Label Height="23" HorizontalAlignment="Left" Margin="5,0,0,0" Name="lblStreet"  Content="Straat" VerticalAlignment="Center" Grid.Row="0" />
+        <sdk:Label Height="23" HorizontalAlignment="Left" Margin="5,0,0,0" Name="lblCity" Content="Gemeente" VerticalAlignment="Center" Grid.Row="2" />
+        <sdk:Label Height="23" HorizontalAlignment="Left" Margin="5,0,0,0" Name="lblPostCode"  Content="Postcode" VerticalAlignment="Center" Grid.Row="3" />
+        <TextBox Grid.Column="1" Height="24" HorizontalAlignment="Left" Name="txtStreet" 
+                 Text="{Binding Street,Mode=TwoWay}" VerticalAlignment="Center" Width="170" />
+        <TextBox Grid.Column="1" Grid.Row="1" Height="24" HorizontalAlignment="Left" Name="txtNumber" 
+                   Text="{Binding Number,Mode=TwoWay}" VerticalAlignment="Center" Width="90" />
+        <TextBox Grid.Column="1" Grid.Row="2" Height="24" HorizontalAlignment="Left" Name="txtCity" 
+                   Text="{Binding City,Mode=TwoWay}" VerticalAlignment="Center" Width="170" />
+        <TextBox Grid.Column="1" Grid.Row="3" Height="24" HorizontalAlignment="Left" Name="txtPostCode" 
+                   Text="{Binding PostCode,Mode=TwoWay}" VerticalAlignment="Center" Width="90" />
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,55,80" Orientation="Vertical" >
+            <ListBox Grid.Column="0" Name="ListResults" ItemsSource="{Binding LocationResults}" 
+                     SelectionMode="Single" helper:Selected.Command="{Binding LocationSelectedCommand}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     MaxHeight="300" Visibility="{Binding SelectionVisibility}"
+                     HorizontalAlignment="Left">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Resources/zoom_16.png" />
+                            <TextBlock Text="{Binding Title}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox Name="StopsList" ItemsSource="{Binding LocationsSelected}"  MaxHeight="300" Visibility="{Binding StopsVisibility}"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     HorizontalAlignment="Left">
+                <!--SelectedIndex="{Binding SelectedStopIndex, Mode=TwoWay}"
+                helper:Selected.Command="{Binding StopSelectedCommand}"
+                -->
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Name="btnMoveUp" Command="{Binding ElementName=LayoutRoot,Path=DataContext.MoveUpStopCommand}"
+                                 CommandParameter="{Binding}"    >
+                            <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/GenericBlueUpArrowLongTail16.png" >
+                            </Image>
+                            </Button>
+                            <Button Name="btnMoveDown" Command="{Binding ElementName=LayoutRoot,Path=DataContext.MoveDownStopCommand}"
+                                     CommandParameter="{Binding}" >
+                            <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/GenericBlueDownArrowLongTail16.png" >
+                            </Image>
+                            </Button>
+                            <Button Name="btnDelete"  Command="{Binding ElementName=LayoutRoot,Path=DataContext.DeleteStopCommand}"
+                                     CommandParameter="{Binding}" >
+                            <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/GenericDeleteRed16.png" >                         
+                            </Image>
+                            </Button>
+                            <TextBlock Text="{Binding Title}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox ItemsSource="{Binding RouteDirections}" Visibility="{Binding RouteDirectionsVisibility}"
+                     ScrollViewer.VerticalScrollBarVisibility="Visible"
+                     ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                      Width="230" HorizontalAlignment="Left" MaxHeight="300" VerticalAlignment="Bottom">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <Button Content="Zoek" Height="25" HorizontalAlignment="Left" Name="btnOK" VerticalAlignment="Top" Width="70" Command="{Binding OkCommand}" Grid.Column="1" Margin="0,5,0,0" Grid.Row="4" />
+        <Button Content="Stop" Height="25" HorizontalAlignment="Left" Margin="75,5,0,0" Name="btnCancel" VerticalAlignment="Top" Width="70" Command="{Binding CancelCommand}" Grid.Column="1" Grid.Row="4" />
+    </Grid>
+</UserControl>

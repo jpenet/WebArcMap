@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.Helper", "..\Silverlight.Helper\Silverlight.Helper.csproj", "{5F688B59-3B20-4225-9582-BE37E1C20BF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.Services.General", "..\Silverlight.Services.General\Silverlight.Services.General.csproj", "{5076FE4E-A185-408B-9EFD-2A50B9DBF1F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.Services.Gis", "..\Silverlight.Services.Gis\Silverlight.Services.Gis.csproj", "{44817F52-F831-4E24-967F-CDD55C512F21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.UI.LayerSelection", "..\Silverlight.UI.LayerSelection\Silverlight.UI.LayerSelection.csproj", "{F42ABEFB-F117-4AF8-B79F-924C6DE02A36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.UI.Esri.JTMap", "..\Silverlight.UI.Esri.JTMap\Silverlight.UI.Esri.JTMap.csproj", "{42E98D6D-4E92-4564-ABE4-590B0D1AB01A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.UI.Esri.JTToc", "..\Silverlight.UI.Esri.JTToc\Silverlight.UI.Esri.JTToc.csproj", "{0E7F73EC-646C-486A-8500-70D242945C82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.UI.Esri.JTToolbarCommon", "..\Silverlight.UI.Esri.JTToolbarCommon\Silverlight.UI.Esri.JTToolbarCommon.csproj", "{BF229FC4-AFDC-479C-AA2E-B793DC8956EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.UI.Esri.JTToolbarEditGeneral", "..\Silverlight.UI.Esri.JTToolbarEditGeneral\Silverlight.UI.Esri.JTToolbarEditGeneral.csproj", "{B223EABC-7612-4694-88E7-B6A28D9D35D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.Styles.Dictionaries", "..\Silverlight.Styles.Dictionaries\Silverlight.Styles.Dictionaries.csproj", "{1F4BB6E0-E0F8-4D78-9D50-AD94006C7755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMap", "WebMap\WebMap.csproj", "{6B86FA76-2ECA-4D5B-885A-EE435EE286F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMap.Web", "WebMap.Web\WebMap.Web.csproj", "{2B90FBFD-0D84-40BB-8B03-0C37DD418B63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F688B59-3B20-4225-9582-BE37E1C20BF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F688B59-3B20-4225-9582-BE37E1C20BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F688B59-3B20-4225-9582-BE37E1C20BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F688B59-3B20-4225-9582-BE37E1C20BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5076FE4E-A185-408B-9EFD-2A50B9DBF1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5076FE4E-A185-408B-9EFD-2A50B9DBF1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5076FE4E-A185-408B-9EFD-2A50B9DBF1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5076FE4E-A185-408B-9EFD-2A50B9DBF1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44817F52-F831-4E24-967F-CDD55C512F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44817F52-F831-4E24-967F-CDD55C512F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44817F52-F831-4E24-967F-CDD55C512F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44817F52-F831-4E24-967F-CDD55C512F21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F42ABEFB-F117-4AF8-B79F-924C6DE02A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42ABEFB-F117-4AF8-B79F-924C6DE02A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42ABEFB-F117-4AF8-B79F-924C6DE02A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42ABEFB-F117-4AF8-B79F-924C6DE02A36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42E98D6D-4E92-4564-ABE4-590B0D1AB01A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E98D6D-4E92-4564-ABE4-590B0D1AB01A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E98D6D-4E92-4564-ABE4-590B0D1AB01A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E98D6D-4E92-4564-ABE4-590B0D1AB01A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E7F73EC-646C-486A-8500-70D242945C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E7F73EC-646C-486A-8500-70D242945C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E7F73EC-646C-486A-8500-70D242945C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E7F73EC-646C-486A-8500-70D242945C82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF229FC4-AFDC-479C-AA2E-B793DC8956EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF229FC4-AFDC-479C-AA2E-B793DC8956EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF229FC4-AFDC-479C-AA2E-B793DC8956EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF229FC4-AFDC-479C-AA2E-B793DC8956EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B223EABC-7612-4694-88E7-B6A28D9D35D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B223EABC-7612-4694-88E7-B6A28D9D35D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B223EABC-7612-4694-88E7-B6A28D9D35D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B223EABC-7612-4694-88E7-B6A28D9D35D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4BB6E0-E0F8-4D78-9D50-AD94006C7755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4BB6E0-E0F8-4D78-9D50-AD94006C7755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4BB6E0-E0F8-4D78-9D50-AD94006C7755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4BB6E0-E0F8-4D78-9D50-AD94006C7755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B86FA76-2ECA-4D5B-885A-EE435EE286F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B86FA76-2ECA-4D5B-885A-EE435EE286F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B86FA76-2ECA-4D5B-885A-EE435EE286F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B86FA76-2ECA-4D5B-885A-EE435EE286F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B90FBFD-0D84-40BB-8B03-0C37DD418B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B90FBFD-0D84-40BB-8B03-0C37DD418B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B90FBFD-0D84-40BB-8B03-0C37DD418B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B90FBFD-0D84-40BB-8B03-0C37DD418B63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

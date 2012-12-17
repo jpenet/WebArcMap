@@ -1,0 +1,9 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:sdk="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls" 
+              x:Class="WebArcMap.App" xmlns:my="clr-namespace:System;assembly=mscorlib">
+  <Application.Resources>
+    <my:String x:Key="DevExpress.Xpf.License">A1-1E-E7-55-A1-5D-A4-7E-6F-6F-8B-34-C8-39-56-C3-83-82-72-E5</my:String>
+
+    </Application.Resources>
+</Application>

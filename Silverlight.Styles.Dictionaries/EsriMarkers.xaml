@@ -1,0 +1,362 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:esri="http://schemas.esri.com/arcgis/client/2009">
+    <esri:PictureMarkerSymbol x:Key="LocationMarkerSymbol"
+                              OffsetX="11"
+                              OffsetY="39"
+                              Source="/Silverlight.Styles.Dictionaries;component/Images/pin-cyan-36x36.png" />
+    <esri:SimpleMarkerSymbol x:Key="StopRouteSymbol"
+                             Size="15"
+                             Style="Circle">
+        <esri:SimpleMarkerSymbol.ControlTemplate>
+            <ControlTemplate xmlns="http://schemas.microsoft.com/client/2007"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows">
+                <Grid x:Name="RootElement"
+                      Width="15"
+                      Height="15"
+                      RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <ScaleTransform x:Name="customEnlargeRotatingMarkerSymbolScale"
+                                        ScaleX="1"
+                                        ScaleY="1" />
+                    </Grid.RenderTransform>
+                    <Grid.Resources>
+                        <DropShadowEffect x:Key="customEnlargeRotatingMarkerSymbolEffect"
+                                          BlurRadius="10"
+                                          Direction="-60"
+                                          Opacity="0.75"
+                                          ShadowDepth="2"
+                                          Color="Black" />
+                    </Grid.Resources>
+                    <vsm:VisualStateManager.VisualStateGroups>
+                        <vsm:VisualStateGroup x:Name="CommonStates">
+                            <vsm:VisualState x:Name="Normal">
+                                <Storyboard>
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolScale"
+                                                     Storyboard.TargetProperty="ScaleX"
+                                                     To="1" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolScale"
+                                                     Storyboard.TargetProperty="ScaleY"
+                                                     To="1" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolRotate"
+                                                     Storyboard.TargetProperty="Angle"
+                                                     To="360" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="ellipse"
+                                                     Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)"
+                                                     To="2" />
+                                </Storyboard>
+                            </vsm:VisualState>
+                            <vsm:VisualState x:Name="MouseOver">
+                                <Storyboard>
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolScale"
+                                                     Storyboard.TargetProperty="ScaleX"
+                                                     To="2" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolScale"
+                                                     Storyboard.TargetProperty="ScaleY"
+                                                     To="2" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolRotate"
+                                                     Storyboard.TargetProperty="Angle"
+                                                     To="0" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="ellipse"
+                                                     Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)"
+                                                     To="5" />
+                                </Storyboard>
+                            </vsm:VisualState>
+                        </vsm:VisualStateGroup>
+                    </vsm:VisualStateManager.VisualStateGroups>
+                    <Ellipse x:Name="ellipse"
+                             Width="15"
+                             Height="15"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Effect="{StaticResource customEnlargeRotatingMarkerSymbolEffect}"
+                             Fill="Blue"
+                             Stroke="White"
+                             StrokeThickness="2" />
+                    <Canvas x:Name="RotateCanvas"
+                            Width="15"
+                            Height="15"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Canvas.Clip>
+                            <EllipseGeometry Center="7.5,7.5"
+                                             RadiusX="7.5"
+                                             RadiusY="7.5" />
+                        </Canvas.Clip>
+                        <Canvas.RenderTransform>
+                            <RotateTransform x:Name="customEnlargeRotatingMarkerSymbolRotate" Angle="360" />
+                        </Canvas.RenderTransform>
+                        <Line Stroke="White"
+                              StrokeThickness="2"
+                              X1="0"
+                              X2="15"
+                              Y1="0"
+                              Y2="15" />
+                        <Line Stroke="White"
+                              StrokeThickness="2"
+                              X1="0"
+                              X2="15"
+                              Y1="15"
+                              Y2="0" />
+                    </Canvas>
+                </Grid>
+            </ControlTemplate>
+        </esri:SimpleMarkerSymbol.ControlTemplate>
+    </esri:SimpleMarkerSymbol>
+    <esri:SimpleMarkerSymbol x:Key="WayPointSymbol"
+                             Size="15"
+                             Style="Circle">
+        <esri:SimpleMarkerSymbol.ControlTemplate>
+            <ControlTemplate xmlns="http://schemas.microsoft.com/client/2007"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows">
+                <Grid x:Name="RootElement"
+                      Width="15"
+                      Height="15"
+                      RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <ScaleTransform x:Name="customEnlargeRotatingMarkerSymbolScale"
+                                        ScaleX="1"
+                                        ScaleY="1" />
+                    </Grid.RenderTransform>
+                    <Grid.Resources>
+                        <DropShadowEffect x:Key="customEnlargeRotatingMarkerSymbolEffect"
+                                          BlurRadius="10"
+                                          Direction="-60"
+                                          Opacity="0.75"
+                                          ShadowDepth="2"
+                                          Color="Black" />
+                    </Grid.Resources>
+                    <vsm:VisualStateManager.VisualStateGroups>
+                        <vsm:VisualStateGroup x:Name="CommonStates">
+                            <vsm:VisualState x:Name="Normal">
+                                <Storyboard>
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolScale"
+                                                     Storyboard.TargetProperty="ScaleX"
+                                                     To="1" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolScale"
+                                                     Storyboard.TargetProperty="ScaleY"
+                                                     To="1" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolRotate"
+                                                     Storyboard.TargetProperty="Angle"
+                                                     To="360" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="ellipse"
+                                                     Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)"
+                                                     To="2" />
+                                </Storyboard>
+                            </vsm:VisualState>
+                            <vsm:VisualState x:Name="MouseOver">
+                                <Storyboard>
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolScale"
+                                                     Storyboard.TargetProperty="ScaleX"
+                                                     To="2" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolScale"
+                                                     Storyboard.TargetProperty="ScaleY"
+                                                     To="2" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="customEnlargeRotatingMarkerSymbolRotate"
+                                                     Storyboard.TargetProperty="Angle"
+                                                     To="0" />
+                                    <DoubleAnimation BeginTime="00:00:00"
+                                                     Duration="0:0:0.2"
+                                                     Storyboard.TargetName="ellipse"
+                                                     Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)"
+                                                     To="5" />
+                                </Storyboard>
+                            </vsm:VisualState>
+                        </vsm:VisualStateGroup>
+                    </vsm:VisualStateManager.VisualStateGroups>
+                    <Ellipse x:Name="ellipse"
+                             Width="15"
+                             Height="15"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Effect="{StaticResource customEnlargeRotatingMarkerSymbolEffect}"
+                             Fill="Green"
+                             Stroke="White"
+                             StrokeThickness="2" />
+                    <Canvas x:Name="RotateCanvas"
+                            Width="15"
+                            Height="15"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Canvas.Clip>
+                            <EllipseGeometry Center="7.5,7.5"
+                                             RadiusX="7.5"
+                                             RadiusY="7.5" />
+                        </Canvas.Clip>
+                        <Canvas.RenderTransform>
+                            <RotateTransform x:Name="customEnlargeRotatingMarkerSymbolRotate" Angle="360" />
+                        </Canvas.RenderTransform>
+                        <Line Stroke="White"
+                              StrokeThickness="2"
+                              X1="0"
+                              X2="15"
+                              Y1="0"
+                              Y2="15" />
+                        <Line Stroke="White"
+                              StrokeThickness="2"
+                              X1="0"
+                              X2="15"
+                              Y1="15"
+                              Y2="0" />
+                    </Canvas>
+                </Grid>
+            </ControlTemplate>
+        </esri:SimpleMarkerSymbol.ControlTemplate>
+    </esri:SimpleMarkerSymbol>
+    <esri:SimpleLineSymbol x:Key="LineRoute"
+                           Width="5"
+                           Color="#990000FF" />
+    <esri:SimpleLineSymbol x:Key="DefaultLineSymbol"
+                           Width="4"
+                           Color="Azure" />
+    <esri:FillSymbol x:Key="DefaultFillSymbol">
+        <esri:FillSymbol.ControlTemplate>
+            <ControlTemplate>
+                <Path x:Name="Element"
+                      Fill="#66FF0000"
+                      IsHitTestVisible="False"
+                      Stroke="Red"
+                      StrokeThickness="1" />
+            </ControlTemplate>
+        </esri:FillSymbol.ControlTemplate>
+    </esri:FillSymbol>
+    <esri:MarkerSymbol x:Key="SelectMarkerSymbol">
+        <esri:MarkerSymbol.ControlTemplate>
+            <ControlTemplate>
+                <Ellipse x:Name="Element"
+                         Width="5"
+                         Height="5"
+                         Fill="#8800FFFF"
+                         Stroke="#8800FFFF">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="SelectionStates">
+                            <VisualState x:Name="Unselected" />
+                            <VisualState x:Name="MouseOver">
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.1"
+                                                    Storyboard.TargetName="Element"
+                                                    Storyboard.TargetProperty="(Fill).(Color)"
+                                                    To="#880000FF" />
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Ellipse>
+            </ControlTemplate>
+        </esri:MarkerSymbol.ControlTemplate>
+    </esri:MarkerSymbol>
+    <esri:LineSymbol x:Key="SelectLineSymbol">
+        <esri:LineSymbol.ControlTemplate>
+            <ControlTemplate>
+                <Path x:Name="Element"
+                      Stroke="#885A00FF"
+                      StrokeEndLineCap="Round"
+                      StrokeLineJoin="Round"
+                      StrokeStartLineCap="Round"
+                      StrokeThickness="4">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="SelectionStates">
+                            <!--
+                                By specifying an empty Unselected state,
+                                unselecting the graphic will instantly set the
+                                values back to their original value without any animation.
+                                Set a storyboard if you want a smooth transition
+                                back (see SelectFillSymbol template)
+                            -->
+                            <VisualState x:Name="Unselected" />
+                            <VisualState x:Name="MouseOver">
+                                <Storyboard>
+                                    <ColorAnimation Duration="00:00:00.25"
+                                                    Storyboard.TargetName="Element"
+                                                    Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)"
+                                                    To="#880000FF" />
+                                    <DoubleAnimation Duration="00:00:00.25"
+                                                     Storyboard.TargetName="Element"
+                                                     Storyboard.TargetProperty="StrokeThickness"
+                                                     To="10" />
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Path>
+            </ControlTemplate>
+        </esri:LineSymbol.ControlTemplate>
+    </esri:LineSymbol>
+    <esri:FillSymbol x:Key="SelectFillSymbol">
+        <esri:FillSymbol.ControlTemplate>
+            <ControlTemplate x:Name="CustomPolygonTemplate">
+                <Grid>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.1"
+                                                    Storyboard.TargetName="Element"
+                                                    Storyboard.TargetProperty="(Fill).(Color)"
+                                                    To="#8800FFFF" />
+                                </Storyboard>
+                            </VisualState>
+                            <VisualState x:Name="MouseOver">
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.1"
+                                                    Storyboard.TargetName="Element"
+                                                    Storyboard.TargetProperty="(Fill).(Color)"
+                                                    To="#880000FF" />
+                                </Storyboard>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.1"
+                                                    Storyboard.TargetName="Element"
+                                                    Storyboard.TargetProperty="(Fill).(Color)"
+                                                    To="#880000FF" />
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <Path x:Name="Element"
+                          Fill="#8800FFFF"
+                          Stroke="Blue"
+                          StrokeEndLineCap="Round"
+                          StrokeLineJoin="Round"
+                          StrokeStartLineCap="Round"
+                          StrokeThickness="2" />
+                </Grid>
+            </ControlTemplate>
+        </esri:FillSymbol.ControlTemplate>
+    </esri:FillSymbol>
+</ResourceDictionary>

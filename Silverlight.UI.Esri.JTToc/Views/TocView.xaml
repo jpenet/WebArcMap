@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="Silverlight.UI.Esri.JTToc.Views.TocView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:bind="clr-namespace:Silverlight.Helper.RelativeBinding;assembly=Silverlight.Helper"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:Silverlight.UI.Esri.JTToc.Resources"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://www.codeplex.com/prism"
+             xmlns:tochelper="clr-namespace:Silverlight.UI.Esri.JTToc.Helper"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             d:DesignHeight="300"
+             d:DesignWidth="250"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Silverlight.Styles.Dictionaries;component/Theme.xaml" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot"
+          Margin="5,0,5,0"
+          Background="White">
+        <Grid.Resources>
+            <local:LocalizedStrings x:Key="LocalizedStrings" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <i:Interaction.Triggers>
+            <prism:InteractionRequestTrigger SourceObject="{Binding ShowMessagebox}">
+                <prism:PopupChildWindowAction ContentTemplate="{StaticResource InfoErrorMessageTemplate}" />
+            </prism:InteractionRequestTrigger>
+            <prism:InteractionRequestTrigger SourceObject="{Binding ShowErrorMessagebox}">
+                <prism:PopupChildWindowAction ContentTemplate="{StaticResource SevereErrorMessageTemplate}" />
+            </prism:InteractionRequestTrigger>
+        </i:Interaction.Triggers>
+        <StackPanel Grid.Row="1" VerticalAlignment="Top">
+            <TextBlock Text="" />
+            <esri:Legend x:Name="LayerLegend"
+                         Height="400"
+                         Margin="0"
+                         LayerItemsMode="Tree"
+                         ShowOnlyVisibleLayers="False"
+                         Style="{StaticResource LegendGradientBackground}">
+                <esri:Legend.MapLayerTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <CheckBox Content="{Binding Label}"
+                                      IsChecked="{Binding IsEnabled,
+                                                          Mode=TwoWay}"
+                                      IsEnabled="{Binding IsInScaleRange}">
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="{Binding Source={StaticResource LocalizedStrings}, Path=AttributeList}">
+                                            <toolkit:MenuItem.Icon>
+                                                <Image Source="/Silverlight.UI.Esri.JTToc;component/Images/TableDBase16.png" />
+                                            </toolkit:MenuItem.Icon>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <i:InvokeCommandAction Command="{Binding ElementName=LayoutRoot, Path=DataContext.AttributeListCommand}" CommandParameter="{Binding Label}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </toolkit:MenuItem>
+                                        <toolkit:MenuItem Header="{Binding Source={StaticResource LocalizedStrings}, Path=ZoomLayer}">
+                                            <toolkit:MenuItem.Icon>
+                                                <Image Source="/Silverlight.UI.Esri.JTToc;component/Images/LayerZoomTo16.png" />
+                                            </toolkit:MenuItem.Icon>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <i:InvokeCommandAction Command="{Binding ElementName=LayoutRoot, Path=DataContext.Zoom2LayerCommand}" CommandParameter="{Binding Label}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </toolkit:MenuItem>
+                                        <toolkit:MenuItem Header="{Binding Source={StaticResource LocalizedStrings}, Path=ZoomSelected}">
+                                            <toolkit:MenuItem.Icon>
+                                                <Image Source="/Silverlight.UI.Esri.JTToc;component/Images/selectionZoomToSelected16.png" />
+                                            </toolkit:MenuItem.Icon>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <i:InvokeCommandAction Command="{Binding ElementName=LayoutRoot, Path=DataContext.Zoom2SelectedCommand}" CommandParameter="{Binding Label}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </toolkit:MenuItem>
+                                        <toolkit:MenuItem Header="{Binding Source={StaticResource LocalizedStrings}, Path=SelectAll}">
+                                            <toolkit:MenuItem.Icon>
+                                                <Image Source="/Silverlight.UI.Esri.JTToc;component/Images/SelectAllCommand16.png" />
+                                            </toolkit:MenuItem.Icon>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <i:InvokeCommandAction Command="{Binding ElementName=LayoutRoot, Path=DataContext.SelectAllCommand}" CommandParameter="{Binding Label}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </toolkit:MenuItem>
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding ElementName=LayoutRoot, Path=DataContext.LayerClicked}" CommandParameter="{Binding Label}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+                            <Slider Width="50"
+                                    HorizontalAlignment="Left"
+                                    Maximum="1"
+                                    tochelper:TocSliderViewHelper.VisibleSlider="{Binding Layer}"
+                                    Value="{Binding Layer.Opacity,
+                                                    Mode=TwoWay}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </esri:Legend.MapLayerTemplate>
+                <esri:Legend.LayerTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Label}"
+                                  IsChecked="{Binding IsEnabled,
+                                                      Mode=TwoWay}"
+                                  IsEnabled="{Binding IsInScaleRange}" />
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Clicked">
+                                <i:InvokeCommandAction CommandParameter="{Binding Label}">
+                                    <bind:BindingHelper.Binding>
+                                        <bind:RelativeSourceBinding AncestorType="UserControl"
+                                                                    Path="LayerClicked"
+                                                                    RelativeMode="FindAncestor"
+                                                                    TargetProperty="Command" />
+                                    </bind:BindingHelper.Binding>
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </DataTemplate>
+                </esri:Legend.LayerTemplate>
+            </esri:Legend>
+        </StackPanel>
+    </Grid>
+</UserControl>

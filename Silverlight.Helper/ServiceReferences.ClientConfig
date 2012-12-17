@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <system.serviceModel>
+        <bindings>
+            <customBinding>
+                <binding name="CustomBinding_AuthenticationService">
+                    <binaryMessageEncoding />
+                    <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
+                </binding>
+            </customBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost/Digi.DTP.Silverlight.Web/Services/Authentication.svc"
+                binding="customBinding" bindingConfiguration="CustomBinding_AuthenticationService"
+                contract="ServiceReference.Digi.DTP.Silverlight.Web.Services.AuthenticationService.AuthenticationService"
+                name="CustomBinding_AuthenticationService" />
+        </client>
+    </system.serviceModel>
+</configuration>

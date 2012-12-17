@@ -1,0 +1,192 @@
+﻿<UserControl x:Class="Silverlight.UI.Esri.JTToolbarEditGeneral.Views.EditToolBarGeneralView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+             xmlns:esriToolkitPrimitives="clr-namespace:ESRI.ArcGIS.Client.Toolkit.Primitives;assembly=ESRI.ArcGIS.Client.Toolkit"
+             xmlns:helper="clr-namespace:Silverlight.Helper.Behaviour;assembly=Silverlight.Helper"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:Silverlight.UI.Esri.JTToolbarEditGeneral.Resources"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://www.codeplex.com/prism"
+             xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+             d:DesignHeight="67"
+             d:DesignWidth="630"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Silverlight.Styles.Dictionaries;component/Theme.xaml" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot"
+          Width="572"
+          Height="70"
+          Background="Transparent">
+        <Grid.Resources>
+            <local:LocalizedStrings x:Key="LocalizedStrings" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <i:Interaction.Triggers>
+            <prism:InteractionRequestTrigger SourceObject="{Binding ShowMessagebox}">
+                <prism:PopupChildWindowAction ContentTemplate="{StaticResource InfoErrorMessageTemplate}" />
+            </prism:InteractionRequestTrigger>
+            <prism:InteractionRequestTrigger SourceObject="{Binding ShowErrorMessagebox}">
+                <prism:PopupChildWindowAction ContentTemplate="{StaticResource SevereErrorMessageTemplate}" />
+            </prism:InteractionRequestTrigger>
+        </i:Interaction.Triggers>
+        <StackPanel Grid.Row="0"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+            <ComboBox Name="cmbLayers"
+                      Width="250"
+                      Height="25"
+                      Margin="0,0,5,0"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      DisplayMemberPath="LayerName"
+                      IsEnabled="True"
+                      ItemsSource="{Binding EditLayers}"
+                      SelectedItem="{Binding SelectedEditLayer}"
+                      Visibility="{Binding SelectLayerList}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding EditLayerSelectCommand}" CommandParameter="{Binding SelectedItem, ElementName=cmbLayers, Mode=OneWay}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            <Button Name="SelectFeatures"
+                    Command="{Binding SelectCommand}"
+                    CommandParameter="{Binding SelectParameter}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/SelectionSelectTool32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=SelectGeometriesTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="ClearFeatures"
+                    Command="{Binding ClearSelectionCommand}"
+                    CommandParameter="{Binding ClearSelectionParameter}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/selectionClearSelection32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=ClearSelectionTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="btnDeleteGeometry"
+                    Command="{Binding DeleteSelectedCommand}"
+                    CommandParameter="{Binding DeleteGeometryParameter}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/EditingFixErrorTool32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=DeleteGeometryTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="btnAddGeometry"
+                    Command="{Binding AddCommand}"
+                    CommandParameter="{Binding AddGeometryParameter}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/EditingPolygonTool32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=AddGeometryTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="btnEditGeometry"
+                    Command="{Binding EditVerticesCommand}"
+                    CommandParameter="{Binding EditVerticesParameter}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/EditingEditShape32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=EditGeometryTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="btnMovePoint"
+                    Command="{Binding MoveGeometryCommand}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/TinEditingTinNodeMove32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=MovePointTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="btnEditAttributes"
+                    Width="30"
+                    Height="30"
+                    Command="{Binding EditAttributesCommand}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/EditingCreateFeaturesWindowShow32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=EditAttributesTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="btnCancel"
+                    Command="{Binding CancelCommand}"
+                    Style="{StaticResource ActionButton}"
+                    Visibility="Collapsed">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/EditUndo32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=CancelUpdateTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="btnSave"
+                    Command="{Binding SaveCommand}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/EditingSaveEdits32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=SaveTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+            <ListBox Name="ListPoints"
+                     helper:Selected.Command="{Binding SymbolSelected}"
+                     ItemsSource="{Binding SymbolMarkers}"
+                     Visibility="{Binding SubTypeVisibility}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="LightGray" Orientation="Horizontal">
+                            <esriToolkitPrimitives:SymbolDisplay Width="25"
+                                                                 Height="25"
+                                                                 VerticalAlignment="Center"
+                                                                 Symbol="{Binding SymbolMarker}">
+                                <ToolTipService.ToolTip>
+                                    <TextBox BorderThickness="0" Text="{Binding Name}" />
+                                </ToolTipService.ToolTip>
+                            </esriToolkitPrimitives:SymbolDisplay>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ComboBox Name="templates"
+                      Width="250"
+                      Height="25"
+                      Margin="10,0,0,0"
+                      DisplayMemberPath="Description"
+                      IsEnabled="True"
+                      ItemsSource="{Binding EditTemplates}"
+                      Visibility="{Binding TemplateVisibility}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding TemplateSelectCommand}" CommandParameter="{Binding SelectedItem, ElementName=templates, Mode=OneWay}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

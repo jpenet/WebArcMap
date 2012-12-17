@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="Silverlight.UI.Esri.JTToolbarEditGeneral.Views.EditToolbarProcessingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:Silverlight.UI.Esri.JTToolbarEditGeneral.Resources"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://www.codeplex.com/prism"
+             d:DesignHeight="70"
+             d:DesignWidth="383"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Silverlight.Styles.Dictionaries;component/Theme.xaml" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot"
+          Width="381"
+          Height="70"
+          Background="Transparent">
+        <Grid.Resources>
+            <local:LocalizedStrings x:Key="LocalizedStrings" />
+        </Grid.Resources>
+
+        <StackPanel Margin="0,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+            <Button Name="SplitPolygon"
+                    Command="{Binding CutCommand}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/EditingSplitPolygonTool32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=SplitPolygonTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="ConvexHull"
+                    Command="{Binding ConvexHullCommand}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/CadastralPlanarize32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=Point2PolygonTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="CreateConvexHull"
+                    Command="{Binding CreateConvexHullCommand}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/EditingCOGOArea32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=CreatePoint2PolygonTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="MergePolygon"
+                    Command="{Binding UnionCommand}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/CadastralDuplicateParcel32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=MergePolygonTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+        </StackPanel>
+        <StackPanel Margin="0,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+            <Button Name="SnapPolygon"
+                    Command="{Binding SnapPolygonCommand}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/EditingAutoCompletePolygonTool32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=Snap2PolygonTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+            <Button Name="Toolbox"
+                    Command="{Binding ToolboxCommand}"
+                    Style="{StaticResource ActionButton}">
+                <Image Source="/Silverlight.UI.Esri.JTToolbarEditGeneral;component/Images/ToolboxesFolder32.png">
+                    <ToolTipService.ToolTip>
+                        <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=ToolboxTip}" />
+                    </ToolTipService.ToolTip>
+                </Image>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="Silverlight.UI.Esri.JTToolbarCommon.Views.MenuToolbar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+             xmlns:helper="clr-namespace:Silverlight.Helper.UserControls;assembly=Silverlight.Helper"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:Silverlight.UI.Esri.JTToolbarCommon.Resources"
+             xmlns:mapMeasure="clr-namespace:Silverlight.UI.Esri.JTToolbarCommon.Helper"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://www.codeplex.com/prism"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+             d:DesignHeight="76"
+             d:DesignWidth="384"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Silverlight.Styles.Dictionaries;component/Theme.xaml" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot"
+          Margin="5,0,0,0"
+          Background="Transparent">
+        <Grid.Resources>
+            <local:LocalizedStrings x:Key="LocalizedStrings" />
+            <DataTemplate x:Key="AttributesTemplate">
+                <sdk:DataGrid x:Name="ResultGrid"
+                              MaxHeight="400"
+                              AutoGenerateColumns="False"
+                              Background="White"
+                              GridLinesVisibility="None"
+                              HeadersVisibility="None">
+                    <sdk:DataGrid.Columns>
+                        <sdk:DataGridTextColumn Binding="{Binding FieldName}" FontWeight="Bold" />
+                        <sdk:DataGridTextColumn Binding="{Binding Value}" />
+                    </sdk:DataGrid.Columns>
+                </sdk:DataGrid>
+            </DataTemplate>
+            <esri:SimpleFillSymbol x:Key="DefaultFillSymbol"
+                                   BorderBrush="Red"
+                                   BorderThickness="1"
+                                   Fill="#4400FF00" />
+        </Grid.Resources>
+        <i:Interaction.Triggers>
+            <prism:InteractionRequestTrigger SourceObject="{Binding ShowMessagebox}">
+                <prism:PopupChildWindowAction ContentTemplate="{StaticResource InfoErrorMessageTemplate}" />
+            </prism:InteractionRequestTrigger>
+            <prism:InteractionRequestTrigger SourceObject="{Binding ShowErrorMessagebox}">
+                <prism:PopupChildWindowAction ContentTemplate="{StaticResource SevereErrorMessageTemplate}" />
+            </prism:InteractionRequestTrigger>
+        </i:Interaction.Triggers>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+            <StackPanel Margin="5,15,5,0">
+                <Image Width="40"
+                       Height="40"
+                       Margin="0,-10,0,0"
+                       Source="{Binding ApplicationLogo}" />
+                <helper:RaisedText Margin="5,0,0,0"
+                                   ShadowOpacity="0.5"
+                                   Text="{Binding ApplicationName}"
+                                   TextSize="18"
+                                   TextWeight="Bold" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                    <Button Name="btnQuery"
+                            Command="{Binding QueryCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/i_search.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=LocateAddressTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                    <Button Name="btnZoomOut"
+                            HorizontalAlignment="Center"
+                            Command="{Binding ZoomOutCommand}"
+                            Style="{StaticResource ActionButton}">
+
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/i_zoomout.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=ZoomOutTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+
+                    </Button>
+                    <Button Name="btnZoomIn"
+                            Command="{Binding ZoomInCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/i_zoomin.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=ZoomInTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                    <Button Name="btnPan"
+                            Command="{Binding PanCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/LayoutPanTool32.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=PanTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                    <Button Name="btnInfo"
+                            Command="{Binding InfoCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/i_info.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=InfoTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                    <Button Name="btnBookmark"
+                            Command="{Binding BookmarkCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/i_bookmark.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=BookmarkTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <Button Name="btnAddLayer"
+                            Command="{Binding AddLayerCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/i_layers_add.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=AddLayerTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                    <Button Name="btnRemoveLayer"
+                            Command="{Binding RemoveLayerCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/i_layers_remove.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=RemoveLayerTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                    <Button Name="btnMeasure" Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/measure.PNG">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=MeasureTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <esri:MeasureAction AreaUnit="SquareMeters"
+                                                    DisplayTotals="True"
+                                                    DistanceUnit="Meters"
+                                                    FillSymbol="{StaticResource DefaultFillSymbol}"
+                                                    mapMeasure:MapContent.MapMeasure="{Binding MapControl}"
+                                                    MapUnits="Meters"
+                                                    MeasureMode="Polygon" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Name="btnAdresLocate"
+                            Command="{Binding AddressLocatorCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/GeocodeAddressLocator32.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=AddresLocatorTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                    <Button Name="btnRouteStart"
+                            Command="{Binding RouteStartCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/i_route_start.PNG">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=RouteStartTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                    <Button Name="btnRouteClear"
+                            Command="{Binding RouteClearCommand}"
+                            Style="{StaticResource ActionButton}">
+                        <Image Source="/Silverlight.UI.Esri.JTToolbarCommon;component/Images/i_route_clear.png">
+                            <ToolTipService.ToolTip>
+                                <TextBox BorderThickness="0" Text="{Binding Source={StaticResource LocalizedStrings}, Path=RouteClearTip}" />
+                            </ToolTipService.ToolTip>
+                        </Image>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <Border Margin="10,10,10,10"
+                        BorderBrush="DarkGray"
+                        BorderThickness="3"
+                        CornerRadius="10">
+                    <TextBlock Name="txtExtent"
+                               Width="100"
+                               Height="20"
+                               Margin="10,5,0,0"
+                               VerticalAlignment="Top"
+                               FontSize="12"
+                               Foreground="DarkBlue"
+                               Text="{Binding ExtentInfo}" />
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
